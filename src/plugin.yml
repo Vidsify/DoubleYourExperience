@@ -1,0 +1,17 @@
+name: Durexp
+main: me.vidsify.durexp.DurexpPlugin
+version: 1.2.6.1
+website: http://dev.bukkit.org/bukkit-plugins/double-your-experience/
+description: Doubles players experience levels depending on what permissions they have!
+author: Vidsify
+authors: [Europia79, stevesmithjr]
+depend: [Vault]
+softdepend: []
+commands:
+    durexp:
+        description: All Durexp commands.
+permissions:
+  doubleurexp.use:
+    default: op
+  doubleurexp.allow:
+    default: false
