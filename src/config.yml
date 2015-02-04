@@ -1,21 +1,41 @@
-#Welcome to Durexp Config File
-#Here you will find the default config settings feel free to change them to suit your liking! :)
-#If you have any problems please create a ticket:
-#http://dev.bukkit.org/bukkit-plugins/double-your-experience/tickets/
-
-#Change this to false if you don't want the plugin to automatically update itself when a new version is released. I recommend you leave this set to TRUE!
-AutoUpdate: True
-
-#This option will allow you to disable the plugin and enable it, it is also possible to change this in-game using /durexp toggle.
-Enable: true
-
-#Enable this setting if you want to have per perm multiples it will also disable the setting below eg DoubleurEXP.multiplier.<number> This vaule can be to a decimal place but will only go up to 10.0
-EnablePermMultiplier: false
-
-#This will allow you to set a server wide Multiplier
+# Welcome to Durexp Config File
+# Here you will find the default config settings feel free to change them to suit your liking! :)
+# If you have any problems please create a ticket:
+# http://dev.bukkit.org/bukkit-plugins/double-your-experience/tickets/
+#
+# Multiplier: 2.0
+#     # This will allow you to set a server wide Multiplier
+#     # This number is ignored if EnablePermMultiplier = true
+# EnablePermMultiplier: false
+#     # true = Instead of one server-wide-"Multiplier",
+#     # there will be a different "Multiplier" for each permission node that you create.
+#     # Give this permission node to a player or a group: (max = 10.0)
+#     # doubleurexp.multiplier.<number>
+# AutoUpdate: True
+#     # true = automatically update this plugin when a new version is released.
+#     # false = ignore updates
+# Enable: true
+#     # true = enable plugin
+#     # false = disable plugin
+#     # in-game command:
+#     # /durexp toggle
+# CheckForSpawner: true
+#     # Enables/disables the check for mob spawners.
+#     # true = check for nearby mob spawners before giving bonus experience.
+#     # false = do not check for nearby mob spawners: just give out bonus xp.
+# CheckRadius: 40
+#     # The radius that the plugin will check if the "CheckForSpawner" option is enabled, 
+#     # could be used to prevent mass farming. <---We don't want that now!
+# DaysToEnable:
+#     # This is a list of the days that are enabled, 
+#     # shown is the different ways you can write the date, 
+#     # the plugin will detect them all!!!
 Multiplier: 2.0
-
-#This is a list of the days that are enabled, shown is the different ways you can write the date, the plugin will detect them all!!!
+EnablePermMultiplier: false
+AutoUpdate: True
+Enable: true
+CheckForSpawner: true
+CheckRadius: 40
 DaysToEnable:
 - Monday
 - tuesday
@@ -24,13 +44,3 @@ DaysToEnable:
 - frida
 - sat
 - SundAy
-
-#The radius that the plugin will check if the "CheckForSpawner" option is enabled, could be used to prevent mass farming. <---We don't want that now!
-CheckRadius: 40
-
-# Enables/disables the check for mob spawners.
-# true = check for nearby mob spawners before giving bonus experience.
-# false = do not check for nearby mob spawners: just give out bonus xp.
-CheckForSpawner: true
-
-#Congratulations you have successfully customized our easy to use config. Now go ahead and enjoy! :p
