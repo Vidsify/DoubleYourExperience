@@ -2,7 +2,7 @@
 # Here you will find the default config settings feel free to change them to suit your liking! :)
 # If you have any problems please create a ticket:
 # http://dev.bukkit.org/bukkit-plugins/double-your-experience/tickets/
-#
+#     #
 # Multiplier: 2.0
 #     # This will allow you to set a server wide Multiplier
 #     # This number is ignored if EnablePermMultiplier = true
