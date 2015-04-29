@@ -77,6 +77,7 @@ public class DurexpExecutor implements CommandExecutor {
             plugin.getConfig().set("Enable", Boolean.valueOf(true));
             sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Plugin enabled!");
         }
+        plugin.saveConfig();
         return true;
     }
 
