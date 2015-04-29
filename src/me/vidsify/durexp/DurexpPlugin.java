@@ -54,7 +54,8 @@ public class DurexpPlugin extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
-        saveConfig();
+        reloadConfig();//If this isnt here, the plugin will not save config changes a user has made, unless you reload the config in game with a command, thus reverting(which has been your glitch)
+        saveConfig();//if reload isnt above, you will overwrite all changes a user has made and essentially rollback their changes
     }
 
     public void loadConfiguration() {
