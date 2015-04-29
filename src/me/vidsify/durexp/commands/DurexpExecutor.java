@@ -39,11 +39,11 @@ public class DurexpExecutor implements CommandExecutor {
         } //Update Command
         else if (args[0].equalsIgnoreCase("update")) {
             return update(sender);
-        } 
+        } //Reload Command
         else if (args[0].equalsIgnoreCase("reload")) {
         	plugin.reloadConfig();
         	plugin.saveConfig();
-        	sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Config Reloaded!");
+        	sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Config.yml Reloaded!");
             return true;
         } else {
             sender.sendMessage(ChatColor.GOLD + "[DUREXP]" + ChatColor.RED + " Invalid command");
@@ -52,14 +52,16 @@ public class DurexpExecutor implements CommandExecutor {
     }
     
     public boolean help(CommandSender sender) {
-        sender.sendMessage(ChatColor.GOLD + "===================" + ChatColor.DARK_PURPLE + " DoubleXP By Vidsify " + ChatColor.GOLD + "================");
+        sender.sendMessage(ChatColor.GOLD + "===================" + ChatColor.DARK_PURPLE + " DurEXP By Vidsify " + ChatColor.GOLD + "================");
         sender.sendMessage(ChatColor.GOLD + "/durexp help" + ChatColor.RED + " - Displays this help menu");
         sender.sendMessage(ChatColor.GOLD + "/durexp toggle" + ChatColor.RED + " - Toggles this plugin on or off");
         sender.sendMessage(ChatColor.GOLD + "/durexp multiplier <amount>" + ChatColor.RED + " - Amount xp is multiplied by, e.g. 2 is double");
+        sender.sendMessage(ChatColor.GOLD + "/durexp update" + ChatColor.RED + " - Toggles Updater");
+        sender.sendMessage(ChatColor.GOLD + "/durexp reload" + ChatColor.RED + " - Reloads Config if editted manually");
         sender.sendMessage(ChatColor.GOLD + "=====================================================");
         return true;
     }
-    
+    //Multiplier Command
     public boolean multiplier(CommandSender sender, String[] args) {
         if (args.length < 2) {
             sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + " You must specify a number!");
@@ -74,7 +76,7 @@ public class DurexpExecutor implements CommandExecutor {
         }
         return true;
     }
-
+    //Toggle Command
     public boolean toggle(CommandSender sender) {
         if (plugin.getConfig().getBoolean("Enable")) {
             plugin.getConfig().set("Enable", Boolean.valueOf(false));
@@ -86,7 +88,7 @@ public class DurexpExecutor implements CommandExecutor {
         plugin.saveConfig();
         return true;
     }
-
+    //Update Command
     public boolean update(CommandSender sender) {
         if (plugin.getConfig().getBoolean("AutoUpdate")) {
             plugin.getConfig().set("AutoUpdate", Boolean.valueOf(false));
