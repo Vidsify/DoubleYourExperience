@@ -39,6 +39,12 @@ public class DurexpExecutor implements CommandExecutor {
         } //Update Command
         else if (args[0].equalsIgnoreCase("update")) {
             return update(sender);
+        } 
+        else if (args[0].equalsIgnoreCase("reload")) {
+        	plugin.reloadConfig();
+        	plugin.saveConfig();
+        	sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Config Reloaded!");
+            return true;
         } else {
             sender.sendMessage(ChatColor.GOLD + "[DUREXP]" + ChatColor.RED + " Invalid command");
         }
@@ -46,7 +52,7 @@ public class DurexpExecutor implements CommandExecutor {
     }
     
     public boolean help(CommandSender sender) {
-        sender.sendMessage(ChatColor.GOLD + "================" + ChatColor.DARK_PURPLE + " DoubleXP By Vidsify " + ChatColor.GOLD + "================");
+        sender.sendMessage(ChatColor.GOLD + "===================" + ChatColor.DARK_PURPLE + " DoubleXP By Vidsify " + ChatColor.GOLD + "================");
         sender.sendMessage(ChatColor.GOLD + "/durexp help" + ChatColor.RED + " - Displays this help menu");
         sender.sendMessage(ChatColor.GOLD + "/durexp toggle" + ChatColor.RED + " - Toggles this plugin on or off");
         sender.sendMessage(ChatColor.GOLD + "/durexp multiplier <amount>" + ChatColor.RED + " - Amount xp is multiplied by, e.g. 2 is double");
