@@ -61,6 +61,7 @@ public class DurexpExecutor implements CommandExecutor {
         sender.sendMessage(ChatColor.GOLD + "/durexp multiplier <amount>" + ChatColor.RED + " - Amount xp is multiplied by, e.g. 2 is double");
         sender.sendMessage(ChatColor.GOLD + "/durexp update" + ChatColor.RED + " - Toggles Updater");
         sender.sendMessage(ChatColor.GOLD + "/durexp reload" + ChatColor.RED + " - Reloads Config if editted manually");
+        sender.sendMessage(ChatColor.GOLD + "/durexp spawner" + ChatColor.RED + " - Toggles CheckForSpawner on or off");
         sender.sendMessage(ChatColor.GOLD + "=====================================================");
         return true;
     }
