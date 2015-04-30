@@ -45,6 +45,9 @@ public class DurexpExecutor implements CommandExecutor {
         	plugin.saveConfig();
         	sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Config.yml Reloaded!");
             return true;
+        } //Spawner Command
+        else if (args[0].equalsIgnoreCase("spawner")) {
+            return spawner(sender);
         } else {
             sender.sendMessage(ChatColor.GOLD + "[DUREXP]" + ChatColor.RED + " Invalid command");
         }
@@ -96,6 +99,18 @@ public class DurexpExecutor implements CommandExecutor {
         } else {
             plugin.getConfig().set("AutoUpdate", Boolean.valueOf(true));
             sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " AutoUpdate Enabled!");
+        }
+        plugin.saveConfig();
+        return true;
+    }
+    //Spawner Command
+    public boolean spawner(CommandSender sender) {
+        if (plugin.getConfig().getBoolean("CheckForSpawner")) {
+            plugin.getConfig().set("CheckForSpawner", Boolean.valueOf(false));
+            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + " Checking for Spawner Disabled!");
+        } else {
+            plugin.getConfig().set("CheckForSpawner", Boolean.valueOf(true));
+            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Checking for Spawner Enabled!");
         }
         plugin.saveConfig();
         return true;

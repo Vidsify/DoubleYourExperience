@@ -3,14 +3,6 @@
 # If you have any problems please create a ticket:
 # http://dev.bukkit.org/bukkit-plugins/double-your-experience/tickets/
 #     #
-# Multiplier: 2.0
-#     # This will allow you to set a server wide Multiplier
-#     # This number is ignored if EnablePermMultiplier = true
-# EnablePermMultiplier: false
-#     # true = Instead of one server-wide-"Multiplier",
-#     # there will be a different "Multiplier" for each permission node that you create.
-#     # Give this permission node to a player or a group: (max = 10.0)
-#     # doubleurexp.multiplier.<number>
 # AutoUpdate: True
 #     # true = automatically update this plugin when a new version is released.
 #     # false = ignore updates
@@ -19,23 +11,29 @@
 #     # false = disable plugin
 #     # in-game command:
 #     # /durexp toggle
-# CheckForSpawner: true
-#     # Enables/disables the check for mob spawners.
-#     # true = check for nearby mob spawners before giving bonus experience.
-#     # false = do not check for nearby mob spawners: just give out bonus xp.
-# CheckRadius: 40
+# Multiplier: 2.0
+#     # This will allow you to set a server wide Multiplier
+#     # This number is ignored if EnablePermMultiplier = true
+# EnablePermMultiplier: false
+#     # true = Instead of one server-wide-"Multiplier",
+#     # there will be a different "Multiplier" for each permission node that you create.
+#     # Give this permission node to a player or a group: (max = 10.0)
+#     # doubleurexp.multiplier.<number>
 #     # The radius that the plugin will check if the "CheckForSpawner" option is enabled, 
 #     # could be used to prevent mass farming. <---We don't want that now!
 # DaysToEnable:
 #     # This is a list of the days that are enabled, 
 #     # shown is the different ways you can write the date, 
 #     # the plugin will detect them all!!!
-Multiplier: 2.0
-EnablePermMultiplier: false
+# CheckForSpawner: true
+#     # Enables/disables the check for mob spawners.
+#     # true = check for nearby mob spawners before giving bonus experience.
+#     # false = do not check for nearby mob spawners: just give out bonus xp.
+# CheckRadius: 40
 AutoUpdate: true
 Enable: true
-CheckForSpawner: true
-CheckRadius: 40
+Multiplier: 2.0
+EnablePermMultiplier: false
 DaysToEnable:
 - Monday
 - tuesday
@@ -44,3 +42,5 @@ DaysToEnable:
 - frida
 - sat
 - SundAy
+CheckForSpawner: true
+CheckRadius: 40
