@@ -47,15 +47,21 @@ public class DurexpPlugin extends JavaPlugin implements Listener {
         setupEconomy();
         setupChat();
         
+        //Console Enable Info
         getLogger().info("Linked to Vault!");
         getLogger().info("by Vidsify");
-        getLogger().info("" + pdffile.getVersion() + " has been enabled()");
+        getLogger().info("" + pdffile.getVersion() + " has been enabled");
     }
 
     @Override
     public void onDisable() {
         reloadConfig();//If this isnt here, the plugin will not save config changes a user has made, unless you reload the config in game with a command, thus reverting(which has been your glitch)
         saveConfig();//if reload isnt above, you will overwrite all changes a user has made and essentially rollback their changes
+    
+        //Console Disable Info
+        PluginDescriptionFile pdffile = getDescription();
+        getLogger().info("by Vidsify");
+        getLogger().info("" + pdffile.getVersion() + " has been disabled");
     }
 
     public void loadConfiguration() {

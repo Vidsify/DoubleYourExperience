@@ -45,6 +45,9 @@ public class DurexpExecutor implements CommandExecutor {
         	plugin.saveConfig();
         	sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Config has been Reloaded!");
             return true;
+        } //Spawner Command
+        else if (args[0].equalsIgnoreCase("spawner")) {
+            return spawner(sender);
         } else {
             sender.sendMessage(ChatColor.GOLD + "[DUREXP]" + ChatColor.RED + " Invalid command");
         }
@@ -58,6 +61,7 @@ public class DurexpExecutor implements CommandExecutor {
         sender.sendMessage(ChatColor.GOLD + "/durexp multiplier <amount>" + ChatColor.RED + " - Amount xp is multiplied by, e.g. 2 is double");
         sender.sendMessage(ChatColor.GOLD + "/durexp update" + ChatColor.RED + " - Toggles Updater");
         sender.sendMessage(ChatColor.GOLD + "/durexp reload" + ChatColor.RED + " - Reloads Config if editted manually");
+        sender.sendMessage(ChatColor.GOLD + "/durexp spawner" + ChatColor.RED + " - Toggles CheckForSpawner on or off");
         sender.sendMessage(ChatColor.GOLD + "=====================================================");
         return true;
     }
@@ -96,6 +100,18 @@ public class DurexpExecutor implements CommandExecutor {
         } else {
             plugin.getConfig().set("AutoUpdate", Boolean.valueOf(true));
             sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " AutoUpdate Enabled!");
+        }
+        plugin.saveConfig();
+        return true;
+    }
+    //Spawner Command
+    public boolean spawner(CommandSender sender) {
+        if (plugin.getConfig().getBoolean("CheckForSpawner")) {
+            plugin.getConfig().set("CheckForSpawner", Boolean.valueOf(false));
+            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + " Checking for Spawner Disabled!");
+        } else {
+            plugin.getConfig().set("CheckForSpawner", Boolean.valueOf(true));
+            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Checking for Spawner Enabled!");
         }
         plugin.saveConfig();
         return true;
