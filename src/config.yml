@@ -30,7 +30,6 @@
 # CheckRadius: 40
 #     # The radius that the plugin will check if the "CheckForSpawner" option is enabled, 
 #     # could be used to prevent mass farming. <---We don't want that now!
-=======
 #     # The radius that the plugin will check if the "CheckForSpawner" option is enabled, 
 #     # could be used to prevent mass farming. <---We don't want that now!
 # DaysToEnable:
@@ -42,7 +41,6 @@
 #     # true = check for nearby mob spawners before giving bonus experience.
 #     # false = do not check for nearby mob spawners: just give out bonus xp.
 # CheckRadius: 40
->>>>>>> origin/master
 AutoUpdate: true
 Enable: true
 Multiplier: 2.0
