@@ -43,14 +43,14 @@ public class DurexpExecutor implements CommandExecutor {
         else if (args[0].equalsIgnoreCase("reload")) {
         	plugin.reloadConfig();
         	plugin.saveConfig();
-        	sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Config.yml Reloaded!");
+        	sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Config has been Reloaded!");
             return true;
         } else {
             sender.sendMessage(ChatColor.GOLD + "[DUREXP]" + ChatColor.RED + " Invalid command");
         }
         return true;
     }
-    
+    //Help Command
     public boolean help(CommandSender sender) {
         sender.sendMessage(ChatColor.GOLD + "===================" + ChatColor.DARK_PURPLE + " DurEXP By Vidsify " + ChatColor.GOLD + "================");
         sender.sendMessage(ChatColor.GOLD + "/durexp help" + ChatColor.RED + " - Displays this help menu");
