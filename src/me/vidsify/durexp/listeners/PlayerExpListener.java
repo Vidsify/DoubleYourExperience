@@ -57,7 +57,7 @@ public class PlayerExpListener implements Listener {
                         if (plugin.getConfig().getBoolean("EnablePermMultiplier")) {
                             boolean found = false;
                             for (float temp = 0.0F; temp <= 10.0F; temp = (float) (temp + 0.1D)) {
-                                if (!player.isOp() && player.hasPermission(Perm.MULTIPLIER + temp)) {
+                                if (player.hasPermission(Perm.MULTIPLIER + temp)) {
                                     newAmount = (int) (originalAmount * temp);
                                     found = true;
                                 }
@@ -79,7 +79,7 @@ public class PlayerExpListener implements Listener {
                     if (plugin.getConfig().getBoolean("EnablePermMultiplier")) {
                         boolean found = false;
                         for (float temp = 0.0F; temp <= 10.0F; temp = (float) (temp + 0.1D)) {
-                            if (!player.isOp() && player.hasPermission(Perm.MULTIPLIER + temp)) {
+                            if (player.hasPermission(Perm.MULTIPLIER + temp)) {
                                 newAmount = (int) (originalAmount * temp);
                                 found = true;
                             }
