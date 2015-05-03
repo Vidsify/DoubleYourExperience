@@ -19,7 +19,6 @@
 #     # there will be a different "Multiplier" for each permission node that you create.
 #     # Give this permission node to a player or a group: (max = 10.0)
 #     # doubleurexp.multiplier.<number>
-<<<<<<< HEAD
 # DaysToEnable:
 #     # This is a list of the days that are enabled, 
 #     # shown is the different ways you can write the date, 
@@ -31,7 +30,6 @@
 # CheckRadius: 40
 #     # The radius that the plugin will check if the "CheckForSpawner" option is enabled, 
 #     # could be used to prevent mass farming. <---We don't want that now!
-=======
 #     # The radius that the plugin will check if the "CheckForSpawner" option is enabled, 
 #     # could be used to prevent mass farming. <---We don't want that now!
 # DaysToEnable:
@@ -43,7 +41,6 @@
 #     # true = check for nearby mob spawners before giving bonus experience.
 #     # false = do not check for nearby mob spawners: just give out bonus xp.
 # CheckRadius: 40
->>>>>>> origin/master
 AutoUpdate: true
 Enable: true
 Multiplier: 2.0
