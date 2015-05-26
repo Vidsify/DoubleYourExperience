@@ -18,7 +18,7 @@ public class DurexpExecutor implements CommandExecutor {
     public DurexpExecutor(DurexpPlugin reference) {
         this.plugin = reference;
     }
-
+    
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (!sender.hasPermission(Perm.ADMIN)) {

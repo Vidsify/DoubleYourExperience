@@ -94,7 +94,6 @@ public class PlayerExpListener implements Listener {
                     e.setAmount(newAmount);
                 }
             }
-        }
-    }
-
+        }	
+     }
 }
