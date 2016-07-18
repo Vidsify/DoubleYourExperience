@@ -8,12 +8,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 /**
- *
+ * Main plugin command executor class
  * @author Vidsify
  */
 public class DurexpExecutor implements CommandExecutor {
+    private static final String PREFIX_RED = ChatColor.GOLD + "[DurEXP] " + ChatColor.RED;
+    private static final String PREFIX_GREEN = ChatColor.GOLD + "[DurEXP] " + ChatColor.GREEN;
 
-    DurexpPlugin plugin;
+    private DurexpPlugin plugin;
 
     public DurexpExecutor(DurexpPlugin reference) {
         this.plugin = reference;
@@ -22,39 +24,42 @@ public class DurexpExecutor implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (!sender.hasPermission(Perm.ADMIN)) {
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + "You do not have permission for this command!");
+            sender.sendMessage(PREFIX_RED + "You do not have permission for this command!");
             return true;
         }
+
         if (args.length == 0) {
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + "Use /durexp help, for more information");
+            sender.sendMessage(PREFIX_RED + "Use /durexp help, for more information");
         } // Help Command
         else if (args[0].equalsIgnoreCase("help")) {
-            return help(sender);
-        } //Multipler Command
+            help(sender);
+        } // Multiplier Command
         else if (args[0].equalsIgnoreCase("multiplier")) {
-            return multiplier(sender, args);
-        } //Toggle Command
+            multiplier(sender, args);
+        } // Toggle Command
         else if (args[0].equalsIgnoreCase("toggle")) {
-            return toggle(sender);
+            toggle(sender);
         } //Update Command
         else if (args[0].equalsIgnoreCase("update")) {
-            return update(sender);
-        } //Reload Command
+            update(sender);
+        } // Reload Command
         else if (args[0].equalsIgnoreCase("reload")) {
         	plugin.reloadConfig();
         	plugin.saveConfig();
-        	sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Config has been Reloaded!");
-            return true;
-        } //Spawner Command
+        	sender.sendMessage(PREFIX_GREEN + "Config has been Reloaded!");
+        } // Spawner Command
         else if (args[0].equalsIgnoreCase("spawner")) {
-            return spawner(sender);
+            spawner(sender);
         } else {
-            sender.sendMessage(ChatColor.GOLD + "[DUREXP]" + ChatColor.RED + " Invalid command");
+            sender.sendMessage(PREFIX_RED + "Invalid command");
         }
+
+        // Always return true because true means we've handled the command (which we always do)
         return true;
     }
-    //Help Command
-    public boolean help(CommandSender sender) {
+
+    // Help Command
+    private void help(CommandSender sender) {
         sender.sendMessage(ChatColor.GOLD + "===================" + ChatColor.DARK_PURPLE + " DurEXP By Vidsify " + ChatColor.GOLD + "================");
         sender.sendMessage(ChatColor.GOLD + "/durexp help" + ChatColor.RED + " - Displays this help menu");
         sender.sendMessage(ChatColor.GOLD + "/durexp toggle" + ChatColor.RED + " - Toggles this plugin on or off");
@@ -63,58 +68,42 @@ public class DurexpExecutor implements CommandExecutor {
         sender.sendMessage(ChatColor.GOLD + "/durexp reload" + ChatColor.RED + " - Reloads Config if editted manually");
         sender.sendMessage(ChatColor.GOLD + "/durexp spawner" + ChatColor.RED + " - Toggles CheckForSpawner on or off");
         sender.sendMessage(ChatColor.GOLD + "=====================================================");
-        return true;
-    }
-    //Multiplier Command
-    public boolean multiplier(CommandSender sender, String[] args) {
-        if (args.length < 2) {
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + " You must specify a number!");
-            return false;
-        }
-        if (plugin.isDouble(args[1])) {
-            plugin.getConfig().set("Multiplier", Double.valueOf(Double.parseDouble(args[1])));
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + "Multiplier set to: " + args[1]);
-            plugin.saveConfig();
-        } else {
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + " Only enter a number!");
-        }
-        return true;
-    }
-    //Toggle Command
-    public boolean toggle(CommandSender sender) {
-        if (plugin.getConfig().getBoolean("Enable")) {
-            plugin.getConfig().set("Enable", Boolean.valueOf(false));
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + " Plugin disabled!");
-        } else {
-            plugin.getConfig().set("Enable", Boolean.valueOf(true));
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Plugin enabled!");
-        }
-        plugin.saveConfig();
-        return true;
-    }
-    //Update Command
-    public boolean update(CommandSender sender) {
-        if (plugin.getConfig().getBoolean("AutoUpdate")) {
-            plugin.getConfig().set("AutoUpdate", Boolean.valueOf(false));
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + " AutoUpdate Disabled!");
-        } else {
-            plugin.getConfig().set("AutoUpdate", Boolean.valueOf(true));
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " AutoUpdate Enabled!");
-        }
-        plugin.saveConfig();
-        return true;
-    }
-    //Spawner Command
-    public boolean spawner(CommandSender sender) {
-        if (plugin.getConfig().getBoolean("CheckForSpawner")) {
-            plugin.getConfig().set("CheckForSpawner", Boolean.valueOf(false));
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.RED + " Checking for Spawner Disabled!");
-        } else {
-            plugin.getConfig().set("CheckForSpawner", Boolean.valueOf(true));
-            sender.sendMessage(ChatColor.GOLD + "[DurEXP]" + ChatColor.GREEN + " Checking for Spawner Enabled!");
-        }
-        plugin.saveConfig();
-        return true;
     }
 
+    // Multiplier Command
+    private void multiplier(CommandSender sender, String[] args) {
+        if (args.length < 2) {
+            sender.sendMessage(PREFIX_RED + "You must specify a number!");
+            return;
+        }
+
+        if (plugin.isDouble(args[1])) {
+            plugin.getConfig().set("Multiplier", Double.parseDouble(args[1]));
+            sender.sendMessage(PREFIX_RED + "Multiplier set to: " + args[1]);
+            plugin.saveConfig();
+        } else {
+            sender.sendMessage(PREFIX_RED + "Only enter a number!");
+        }
+    }
+
+    // Toggle Command
+    private void toggle(CommandSender sender) {
+        plugin.getConfig().set("Enable", !plugin.getConfig().getBoolean("Enable"));
+        plugin.saveConfig();
+        sender.sendMessage(plugin.getConfig().getBoolean("Enable") ? PREFIX_GREEN + "Plugin enabled!" : PREFIX_RED + "Plugin disabled!");
+    }
+
+    // Update Command
+    private void update(CommandSender sender) {
+        plugin.getConfig().set("AutoUpdate", !plugin.getConfig().getBoolean("AutoUpdate"));
+        plugin.saveConfig();
+        sender.sendMessage(plugin.getConfig().getBoolean("AutoUpdate") ? PREFIX_GREEN + "AutoUpdate enabled!" : PREFIX_RED + "AutoUpdate disabled!");
+    }
+
+    // Spawner Command
+    private void spawner(CommandSender sender) {
+        plugin.getConfig().set("CheckForSpawner", !plugin.getConfig().getBoolean("CheckForSpawner"));
+        plugin.saveConfig();
+        sender.sendMessage(plugin.getConfig().getBoolean("CheckForSpawner") ? PREFIX_GREEN + "Checking for Spawner enabled!" : PREFIX_RED + "Checking for Spawner disabled!");
+    }
 }

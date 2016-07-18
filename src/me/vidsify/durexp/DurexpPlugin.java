@@ -3,74 +3,68 @@ package me.vidsify.durexp;
 import me.vidsify.durexp.commands.DurexpExecutor;
 import me.vidsify.durexp.gravity.Updater;
 import me.vidsify.durexp.listeners.PlayerExpListener;
-
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * 
+ * Main plugin class
  * @author Vidsify
  */
 public class DurexpPlugin extends JavaPlugin implements Listener {
-    
-    public Permission permission;
-    public Economy economy;
-    public Chat chat;
-    private static final int bukkitId = 80039;
+    private Permission permission;
+    private Economy economy;
+    private Chat chat;
 
     @Override
     public void onEnable() {
+        // Configuration
         getConfig().options().copyDefaults(true);
         saveConfig();
-        PluginDescriptionFile pdffile = getDescription();
+
+        // Listener & Command registration
         getServer().getPluginManager().registerEvents(new PlayerExpListener(this), this);
         getCommand("durexp").setExecutor(new DurexpExecutor(this));
         
-        //AutoUpdater
+        // AutoUpdater
         if (getConfig().getBoolean("AutoUpdate", false)) {
-            Updater localUpdater = new Updater(this, bukkitId, getFile(), Updater.UpdateType.DEFAULT, true);
+            Updater localUpdater = new Updater(this, 80039, getFile(), Updater.UpdateType.DEFAULT, true);
         } else {
             getLogger().info("AutoUpdate is turned off.");
         }
         
-        //Load Vault
+        // Load Vault
         setupPermissions();
         setupEconomy();
         setupChat();
         
-        //Console Enable Info
+        // Console Enable Info
         getLogger().info("Linked to Vault!");
         getLogger().info("by Vidsify");
-        getLogger().info("" + pdffile.getVersion() + " has been enabled");
+        getLogger().info("" + getDescription().getVersion() + " has been enabled");
     }
 
     @Override
     public void onDisable() {
-        reloadConfig();//If this isnt here, the plugin will not save config changes a user has made, unless you reload the config in game with a command, thus reverting(which has been your glitch)
-        saveConfig();//if reload isnt above, you will overwrite all changes a user has made and essentially rollback their changes
+        reloadConfig(); // If this isnt here, the plugin will not save config changes a user has made, unless you reload the config in game with a command, thus reverting(which has been your glitch)
+        saveConfig(); // if reload isnt above, you will overwrite all changes a user has made and essentially rollback their changes
     
-        //Console Disable Info
+        // Console Disable Info
         PluginDescriptionFile pdffile = getDescription();
         getLogger().info("by Vidsify");
         getLogger().info("" + pdffile.getVersion() + " has been disabled");
     }
-
-    public void loadConfiguration() {
-    }
     
     private boolean setupPermissions() {
         RegisteredServiceProvider<Permission> permissionProvider = getServer()
-                .getServicesManager().getRegistration(
-                        net.milkbowl.vault.permission.Permission.class);
+                .getServicesManager()
+                .getRegistration(net.milkbowl.vault.permission.Permission.class);
         if (permissionProvider != null) {
             permission = permissionProvider.getProvider();
         }
@@ -79,8 +73,8 @@ public class DurexpPlugin extends JavaPlugin implements Listener {
 
     private boolean setupChat() {
         RegisteredServiceProvider<Chat> chatProvider = getServer()
-                .getServicesManager().getRegistration(
-                        net.milkbowl.vault.chat.Chat.class);
+                .getServicesManager()
+                .getRegistration(net.milkbowl.vault.chat.Chat.class);
         if (chatProvider != null) {
             chat = chatProvider.getProvider();
         }
@@ -90,31 +84,20 @@ public class DurexpPlugin extends JavaPlugin implements Listener {
 
     private boolean setupEconomy() {
         RegisteredServiceProvider<Economy> economyProvider = getServer()
-                .getServicesManager().getRegistration(
-                        net.milkbowl.vault.economy.Economy.class);
+                .getServicesManager()
+                .getRegistration(net.milkbowl.vault.economy.Economy.class);
         if (economyProvider != null) {
             economy = economyProvider.getProvider();
         }
 
         return (economy != null);
     }
-    
-    @SuppressWarnings("deprecation")
+
     public boolean isLocationNearBlock(Location loc, Material type, int radius) {
-        
-        int x1 = loc.getBlockX() - radius;
-        int y1 = loc.getBlockY() - radius;
-        int z1 = loc.getBlockZ() - radius;
-        
-        int x2 = loc.getBlockX() + radius;
-        int y2 = loc.getBlockY() + radius;
-        int z2 = loc.getBlockZ() + radius;
-        
-        for (int x = x1; x <= x2; x++) {
-            for (int y = y1; y <= y2; y++) {
-                for (int z = z1; z <= z2; z++) {
-                    Block block = loc.getWorld().getBlockAt(x, y, z);
-                    if (block.getType() == type) {
+        for (int x = loc.getBlockX() - radius; x <= loc.getBlockX() + radius; x++) {
+            for (int y = loc.getBlockY() - radius; y <= loc.getBlockY() + radius; y++) {
+                for (int z = loc.getBlockZ() - radius; z <= loc.getBlockZ() + radius; z++) {
+                    if (loc.getWorld().getBlockAt(x, y, z).getType() == type) {
                         return true;
                     }
                 }
@@ -128,7 +111,7 @@ public class DurexpPlugin extends JavaPlugin implements Listener {
             Double.parseDouble(input);
             return true;
         } catch (NumberFormatException e) {
+            return false;
         }
-        return false;
     }
 }
