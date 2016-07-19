@@ -6,6 +6,7 @@ import me.vidsify.durexp.listeners.PlayerExpListener;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.event.Listener;
@@ -34,7 +35,7 @@ public class DurexpPlugin extends JavaPlugin implements Listener {
         
         // AutoUpdater
         if (getConfig().getBoolean("AutoUpdate", false)) {
-            Updater localUpdater = new Updater(this, 80039, getFile(), Updater.UpdateType.DEFAULT, true);
+			Updater localUpdater = new Updater(this, 80039, getFile(), Updater.UpdateType.DEFAULT, true);
         } else {
             getLogger().info("AutoUpdate is turned off.");
         }
@@ -52,8 +53,8 @@ public class DurexpPlugin extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
-        reloadConfig(); // If this isnt here, the plugin will not save config changes a user has made, unless you reload the config in game with a command, thus reverting(which has been your glitch)
-        saveConfig(); // if reload isnt above, you will overwrite all changes a user has made and essentially rollback their changes
+        reloadConfig();
+        saveConfig();
     
         // Console Disable Info
         PluginDescriptionFile pdffile = getDescription();

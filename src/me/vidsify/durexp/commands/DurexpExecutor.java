@@ -54,7 +54,6 @@ public class DurexpExecutor implements CommandExecutor {
             sender.sendMessage(PREFIX_RED + "Invalid command");
         }
 
-        // Always return true because true means we've handled the command (which we always do)
         return true;
     }
 

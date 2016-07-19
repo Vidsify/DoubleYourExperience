@@ -55,7 +55,7 @@ public class PlayerExpListener implements Listener {
             /* TODO:
              * Consider making this go backwards so a permission with a higher multiplier
              * will be caught before a permission with a lower multiplier. This is useful
-             * for servers which use inherited permissions. - Exloki
+             * for servers which use inherited permissions.
              */
             for (float temp = 0.0F; temp <= 10.0F; temp += 0.1F) {
                 if (!player.isOp() && player.hasPermission(Perm.MULTIPLIER + temp)) {
