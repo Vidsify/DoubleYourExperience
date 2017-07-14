@@ -2,7 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Dan/Desktop/Bukkit 1.8/craftbukkit-1.10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Dan/Desktop/Bukkit 1.8/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/Projects/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/Projects/Spigot/craftbukkit-1.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/USER/Documents/Projects/votifier-1.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -3,6 +3,7 @@ package me.vidsify.durexp;
 import me.vidsify.durexp.commands.DurexpExecutor;
 import me.vidsify.durexp.gravity.Updater;
 import me.vidsify.durexp.listeners.PlayerExpListener;
+import me.vidsify.durexp.listeners.Votifier;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -49,6 +50,14 @@ public class DurexpPlugin extends JavaPlugin implements Listener {
         getLogger().info("Linked to Vault!");
         getLogger().info("by Vidsify");
         getLogger().info("" + getDescription().getVersion() + " has been enabled");
+        
+        // Votifier Enable Info
+        if (getConfig().getBoolean("EnableVotifier", true)) {
+        	getServer().getPluginManager().registerEvents((Listener) new Votifier(), this);
+        	getLogger().info("Votifer is Enabled.");
+        } else {
+        	getLogger().info("Votifer is Disabled.");
+        }
     }
 
     @Override

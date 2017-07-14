@@ -6,6 +6,9 @@
 # AutoUpdate: True
 #     # true = automatically update this plugin when a new version is released.
 #     # false = ignore updates
+# EnableVotifer: True - In the Works
+#     # true = Enables you to give rewards for voting
+#     # false = disables rewards for voting
 # Enable: true
 #     # true = enable plugin
 #     # false = disable plugin
@@ -42,6 +45,7 @@
 #     # false = do not check for nearby mob spawners: just give out bonus xp.
 # CheckRadius: 40
 AutoUpdate: true
+# EnableVotifier: true
 Enable: true
 Multiplier: 2.0
 EnablePermMultiplier: false
